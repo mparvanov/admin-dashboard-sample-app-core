@@ -11,6 +11,7 @@ if [ ! -z $PRs ]; then
     echo "Unmerged pr $BRANCH_NAME"
 else
     git fetch origin
+    git pull
     git checkout -b $BRANCH_NAME
     git config user.email "kendo-bot@progress.com"
     git config user.name "kendo-bot"
