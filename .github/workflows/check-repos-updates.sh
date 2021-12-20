@@ -41,7 +41,7 @@ else
     git checkout -b $BRANCH_NAME
     git config user.email "kendo-bot@progress.com"
     git config user.name "kendo-bot"
-    git add package.json && git commit -m "chore: update dependencies"
+    git add . && git commit -m "chore: update dependencies"
     git push -u origin $BRANCH_NAME
     #GITHUB_TOKEN=$TOKEN \
     #gh pr create --base master --head $BRANCH_NAME --reviewer $reviewers \
