@@ -42,12 +42,13 @@ else
     git config user.email "kendo-bot@progress.com"
     git config user.name "kendo-bot"
     git add package.json && git commit -m "chore: update dependencies"
-    git push -u origin $BRANCH_NAME
+    #git push -u origin $BRANCH_NAME
     #GITHUB_TOKEN=$TOKEN \
     #gh pr create --base master --head $BRANCH_NAME --reviewer $reviewers \
     #--title "Update dependencies $DATE" --body 'Please review and update dependencies'
 fi
+echo "Stage2 Differences are: "
+git diff
 echo "PRs are:"
-
 echo $PRs
 
