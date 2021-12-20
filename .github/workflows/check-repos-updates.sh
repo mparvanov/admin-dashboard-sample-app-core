@@ -28,7 +28,8 @@ git diff
 echo "Stage2 Commit"
 reviewers="mparvanov"
 BRANCH_NAME="update-dependencies"
-PRs=$(GITHUB_TOKEN=$TOKEN gh pr list | grep "$BRANCH_NAME" || true)
+#PRs=$(GITHUB_TOKEN=$TOKEN gh pr list | grep "$BRANCH_NAME" || true)
+PRs=$(gh pr list | grep "$BRANCH_NAME" || true)
 echo "PRs are:"
 echo $PRs
 echo "Branch is:"
