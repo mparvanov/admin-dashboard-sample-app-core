@@ -16,7 +16,7 @@ else
     git config user.name "kendo-bot"
     git add package.json && git commit -m "chore: update dependencies"
     git push -u origin $BRANCH_NAME
-    GITHUB_TOKEN=$TOKEN \
-    gh pr create --base master --head $BRANCH_NAME --reviewer $reviewers \
-    --title "Update dependencies $DATE" --body 'Please review and update dependencies'
+    #GITHUB_TOKEN=$TOKEN \
+    #gh pr create --base master --head $BRANCH_NAME --reviewer $reviewers \
+    #--title "Update dependencies $DATE" --body 'Please review and update dependencies'
 fi
