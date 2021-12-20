@@ -42,6 +42,7 @@ else
     git config user.email "kendo-bot@progress.com"
     git config user.name "kendo-bot"
     git add . && git commit -m "chore: update dependencies"
+    git pull
     git push -u origin $BRANCH_NAME
     #GITHUB_TOKEN=$TOKEN \
     #gh pr create --base master --head $BRANCH_NAME --reviewer $reviewers \
