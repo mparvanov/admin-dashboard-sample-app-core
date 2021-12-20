@@ -20,7 +20,8 @@ do
               echo "\$var is NOT empty"
     fi
 done
-
+echo "Stage1 Differences are: "
+git diff
 
 
 
