@@ -24,3 +24,4 @@ fi
 echo "PRs are:"
 
 echo $PRs
+
