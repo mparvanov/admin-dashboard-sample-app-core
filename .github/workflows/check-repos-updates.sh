@@ -1,5 +1,30 @@
 #!/usr/bin/env bash
-echo "test"
+echo "Stage1 Find Updates"
+LAST_RELEASE=$(curl -s https://api.github.com/repos/telerik/kendo-ui-core/releases | grep tag_name | head -n 1 |  cut -d '"' -f 4)
+echo "Last release version is $LAST_RELEASE"
+
+IFS="$IFS"
+IFS=$'\n'
+for file in `find . -type f -name "*.cshtml"`  
+do
+    echo "file = $file"
+    ls $file
+    CURRENT_VERSION=$(grep -hnr "kendo.cdn" $file | head -1 |cut -d '/' -f 4)
+    echo "Current release version from $file is $CURRENT_VERSION"
+    #  read line
+    if [ -z "$CURRENT_VERSION" ]
+        then
+        echo "\$var is empty"
+        else
+        sed -i "s/$CURRENT_VERSION/$LAST_RELEASE/g" $file
+              echo "\$var is NOT empty"
+    fi
+done
+
+
+
+
+echo "Stage2 Commit"
 reviewers="mparvanov"
 BRANCH_NAME="update-dependencies"
 PRs=$(GITHUB_TOKEN=$TOKEN gh pr list | grep "$BRANCH_NAME" || true)
@@ -17,9 +42,9 @@ else
     git config user.name "kendo-bot"
     git add package.json && git commit -m "chore: update dependencies"
     git push -u origin $BRANCH_NAME
-    GITHUB_TOKEN=$TOKEN \
-    gh pr create --base master --head $BRANCH_NAME --reviewer $reviewers \
-    --title "Update dependencies $DATE" --body 'Please review and update dependencies'
+    #GITHUB_TOKEN=$TOKEN \
+    #gh pr create --base master --head $BRANCH_NAME --reviewer $reviewers \
+    #--title "Update dependencies $DATE" --body 'Please review and update dependencies'
 fi
 echo "PRs are:"
 
